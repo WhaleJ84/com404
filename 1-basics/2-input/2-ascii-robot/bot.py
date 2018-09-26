@@ -1,0 +1,12 @@
+# Ask user for eye character
+print("Please enter a character for the eye")
+eye = input()
+print("\t.._______..")
+print("\t./##\#/##\\.")
+print("\t{|", eye,"#", eye, "|}")
+print("\t{|#######|}")
+print("\t.|#VVVVV#|.")
+print("\t.\\#######/..")
+print("\t...|##|...")
+print("......###############......")
+print("...../###############\\....")
