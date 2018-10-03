@@ -1,4 +1,4 @@
-# 
+# Ask the user where to look
 print("Where should I look?")
 print("Your options are:")
 print("In the bedroom")
