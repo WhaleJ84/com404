@@ -1,0 +1,43 @@
+# Q5) Nesting
+
+print("Please enter a whole number:")
+num0 = int(input())
+print("Please enter a whole number:")
+num1 = int(input())
+print("Please enter a whole number:")
+num2 = int(input())
+print("Please enter a whole number:")
+num3 = int(input())
+print("Please enter a whole number:")
+num4 = int(input())
+
+even = int()
+odd = int()
+
+if num0 % 2 == 0:
+    even = even + num0
+else:
+    odd = odd + num0
+
+if num1 % 2 == 0:
+    even = even + num1
+else:
+    odd = odd + num1
+
+if num2 % 2 == 0:
+    even = even + num2
+else:
+    odd = odd + num2
+
+if num3 % 2 == 0:
+    even = even + num3
+else:
+    odd = odd + num3
+
+if num4 % 2 == 0:
+    even = even + num4
+else:
+    odd = odd + num4
+
+print("The total for all even numbers is:", even)
+print("The total for all odd numbers is:", odd)
