@@ -1,7 +1,8 @@
+# Ask user for number of robots
 print("How many ascii robots should I draw?")
 number_robots = int(input())
 
-robot = """ 
+ROBOT = """ 
 #########
 #       #
 # O   O #
@@ -9,10 +10,12 @@ robot = """
 |  ---  |
 |_______|
 """
+MAX_ROBOTS = 10
 
-if number_robots <= 10:
+# Display robots
+if number_robots <= MAX_ROBOTS:
   for count in range(number_robots):
-    print(robot)
+    print(ROBOT)
 else:
-  for count in range(10):
-    print(robot)
+  for count in range(MAX_ROBOTS):
+    print(ROBOT)
