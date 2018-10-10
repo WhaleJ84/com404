@@ -1,8 +1,6 @@
-count = 0
-num = 0
+total = 0
 
-while count <= 100:
-  count = count + 1
-  num = num + count
-  if count == 100:
-    print(num)
+for count in range(1, 101, 1):
+  total = total + count
+
+print("total is:", total)
