@@ -1,39 +1,13 @@
-# Q5) Nesting
+even = 0
+odd = 0
 
-#numbers = []
-numbers = [9,8,7,6,4]
-# Asks for 5 numbers to store in the list
-#for i in range(5):
-#  num = ((input)("Please enter a whole number:"))
-#  numbers.append(num)
+for i in range(5):
+  print("Please enter a whole number:")
+  num = int(input())
+  if num % 2 == 0:
+    even = even + num
+  else:
+    odd = odd + num
 
-even = []
-odd = []
-
-if numbers[0] % 2 == 0:
-    even.append(numbers[0])
-else:
-    odd.append(numbers[0])
-
-if numbers[1] % 2 == 0:
-    even.append(numbers[1])
-else:
-    odd.append(numbers[1])
-
-if numbers[2] % 2 == 0:
-    even.append(numbers[2])
-else:
-    odd.append(numbers[2])
-
-if numbers[3] % 2 == 0:
-    even.append(numbers[3])
-else:
-    odd.append(numbers[3])
-
-if numbers[4] % 2 == 0:
-    even.append(numbers[4])
-else:
-    odd.append(numbers[4])
-
-print("The total for all even numbers is:", sum(even))
-print("The total for all odd numbers is:", sum(odd))
+print("The total for all even numbers is:", even)
+print("The total for all odd numbers is:", odd)
