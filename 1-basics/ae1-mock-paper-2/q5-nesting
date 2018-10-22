@@ -1,0 +1,13 @@
+# Creates the variables used in the program
+LOOPS = 7
+total = 0
+
+# Takes 7 numbers and adds them to the total if it's a multiple of 3
+for x in range(LOOPS):
+  print("Please enter a whole number:")
+  number = int(input())
+  if number % 3 == 0:
+    total = total + number
+
+# prints the total
+print("The total for all numbers that are multiples of 3 is:", total)
