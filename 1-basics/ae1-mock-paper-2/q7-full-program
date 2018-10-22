@@ -1,0 +1,63 @@
+# Prints an ascii box around an entered word
+def display_box(word):
+  print("*" * (len(word) + 4))
+  print("*", word, "*")
+  print("*" * (len(word) + 4), end="") 
+  return("")
+
+# Prints entered word in lower case
+def display_lower(word):
+  lower_text = (word.lower())
+  return(lower_text)
+
+# Prints entered word in upper case
+def display_upper(word):
+  upper_text = (word.upper())
+  return(upper_text)
+
+# Prints entered word followed by a mirrored version of itself
+def display_mirror(word):
+  print(word, "| ", end="")
+  for position in range(len(word) -1, -1, -1):
+    print(word[position], end="")
+  return("")
+
+# Repeats word specified number of times, alternating between upper and lower case words
+def display_repeat(word):
+  print("How many times would you like to display the word?")
+  LOOP = int(input())
+  for count in range(LOOP):
+    if count % 2 == 0:
+      print(word.lower(), end="")
+    else:
+      print(word.upper(), end="")
+  return("")
+
+# Asks for all needed information and runs program
+def run():
+  print("Please enter a word:")
+  word = input()
+  print(
+  """Please choose one of the following numbers:
+  1) Display in a box
+  2) Display lower-case
+  3) Display upper-case
+  4) Display mirrored
+  5) Repeat
+  """)
+  option = int(input())
+
+  if option == 1:
+    print(display_box(word))
+  elif option == 2:
+    print(display_lower(word))
+  elif option == 3:
+    print(display_upper(word))
+  elif option == 4:
+    print(display_mirror(word))
+  elif option == 5:
+    print(display_repeat(word))
+  else:
+    print("Error: Number entered does not match table.")
+
+run()
