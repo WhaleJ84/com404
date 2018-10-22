@@ -1,0 +1,9 @@
+# Stores a number entered by the user
+print("Please enter a whole number:")
+number = int(input())
+
+# Divides number by 3 to see if it is a multiple using the remainder
+if number % 3 == 0:
+  print("Is a multiple of 3")
+else:
+  print("Is not a multiple of 3")
