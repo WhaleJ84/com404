@@ -1,0 +1,28 @@
+import math
+
+# Creates function to calculate cylinder volume
+def calculateVolumeOfCylinder(radius, height):
+  cylinder = math.pi*(radius*radius)*height
+  return(cylinder)
+
+# Creates function to calculate cone volume
+def calculateVolumeOfCone(radius, height):
+  cone = (math.pi*(radius*radius)*height) / 3
+  return(cone)
+
+# Creates function to get starting information and run program
+def run():
+  print("Please enter 'cylinder' or 'cone':")
+  choice = input()
+  print("Please enter the radius of", choice)
+  radius = float(input())
+  print("Please enter the height of", choice)
+  height = float(input())
+  if choice == "cylinder":
+    print(calculateVolumeOfCylinder(radius,height))
+
+  elif choice == "cone":
+    print(calculateVolumeOfCone(radius, height))
+
+# Run the program
+run()
