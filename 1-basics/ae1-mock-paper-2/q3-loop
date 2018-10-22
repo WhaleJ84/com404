@@ -1,0 +1,8 @@
+# Stores number input by user in a variable
+print("Please enter a whole number:")
+number = int(input())
+print("Counting down...")
+
+# Counts down from the number to 0
+for count in range(number, -1, -1):
+  print(count)
