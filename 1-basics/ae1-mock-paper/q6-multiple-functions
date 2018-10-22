@@ -1,0 +1,21 @@
+def calculateVolumeOfCuboid(length,width,height):
+  cuboid = length * width * height
+  return(cuboid)
+
+def calculateVolOfCuboid(length):
+  cuboid = calculateVolumeOfCuboid(length,length,length)
+  return(cuboid)
+
+def run():
+  print("Please enter length of cuboid:")
+  length = float(input())
+
+  print("Please enter width of cuboid:")
+  width = float(input())
+
+  print("Please enter height of cuboid:")
+  height = float(input())
+
+  print(calculateVolOfCuboid(length))
+
+run()
