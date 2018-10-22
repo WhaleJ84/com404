@@ -1,0 +1,6 @@
+# Asks user for a name and stores it in a variable
+print("Please enter your name:")
+name = input()
+
+# Prints hello with the stored name
+print("Hello", name)
