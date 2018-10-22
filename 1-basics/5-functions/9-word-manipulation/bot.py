@@ -1,7 +1,7 @@
 def display_box(word):
-  print("*" * (len(word) + 10))
+  print("*" * (len(word) + 4))
   print("*", word, "*")
-  print("*" * (len(word) + 10)) 
+  print("*" * (len(word) + 4)) 
 
 def display_lower(word):
   lower_text = (word.lower())
@@ -12,6 +12,7 @@ def display_upper(word):
   return(upper_text)
 
 def display_mirror(word):
+  print(word, end="")
   reverseWord = str()
   for position in range(len(word) -1, -1, -1):
     print(word[position], end="")
@@ -31,7 +32,7 @@ def display_mirror(word):
 #option = input()
 
 word = "TeStWoRd"
-option = "Display in a box"
+option = "Display mirrored"
 
 if option == "Display in a box":
   print(display_box(word))
