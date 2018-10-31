@@ -23,15 +23,3 @@ class Bot:
 
   def __str__(self):
     return("{} is {} years old and has {} energy and {} shield remaining.".format(self.name,self.age,self.energy,self.shield))
-  
-  
-  
-from bot import Bot
-
-walle = Bot("WallE")
-
-walle.display_name()
-walle.display_age()
-walle.display_energy()
-walle.display_shield()
-walle.display_summary()
