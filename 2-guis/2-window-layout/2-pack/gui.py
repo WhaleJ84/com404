@@ -21,6 +21,7 @@ class Gui(Tk):
         self.add_email_frame()
         self.add_email_label()
         self.add_email_entry()
+        self.add_email_image()
         self.add_program_button()
 
     def add_program_frame(self):
@@ -66,6 +67,12 @@ class Gui(Tk):
         self.email_entry.pack(side=LEFT)
         self.email_entry.configure(width=45,
                                    bg="#f9f9f9")
+
+    def add_email_image(self):
+        picture = PhotoImage(file="picture.png")
+        self.email_image = Label(self.email_frame)
+        self.email_image.pack(side=RIGHT)
+        self.email_image.configure(image=picture)
 
     def add_program_button(self):
         self.program_button = Button(self.program_frame)
