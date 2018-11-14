@@ -1,16 +1,20 @@
 # blueprint for what our gui can do
 from tkinter import *
+from tkinter import messagebox
 class Gui(Tk):
-
+    
     # initialise the object
     def __init__(self):
         super().__init__()
 
+        self.visa_check_var = ()
+        self.passport_check_var = ()
+        self.photo_check_var = ()
+
         #set window attributes
         self.title("Passport Checker")
         #self.iconbitmap("icon.ico")
-        self.configure(bg="#f2eaea",
-                       height=300,
+        self.configure(height=300,
                        width=550,
                        bd=15)
     
@@ -43,21 +47,16 @@ class Gui(Tk):
                                    font="Arial 12")
 
     def add_photo_checkbutton_yes(self):
-        PhotoCheck = IntVar()
         self.photo_checkbutton_yes = Checkbutton()
         self.photo_checkbutton_yes.grid(row=2,column=1,
                                         sticky="E")
-        self.photo_checkbutton_yes.configure(text="Yes",
-                                             variable = PhotoCheck,
-                                             onvalue = "Yes")
+        self.photo_checkbutton_yes.configure(text="Yes")
         self.photo_checkbutton_yes.bind("<ButtonRelease-1>",self.photo_checkbutton_yes_clicked)
 
     def add_photo_checkbutton_no(self):
-        PhotoCheck = IntVar()
         self.photo_checkbutton_no = Checkbutton()
         self.photo_checkbutton_no.grid(row=2,column=2)
-        self.photo_checkbutton_no.configure(text="No",
-                                            variable = PhotoCheck)
+        self.photo_checkbutton_no.configure(text="No")
         self.photo_checkbutton_no.bind("<ButtonRelease-1>",self.photo_checkbutton_no_clicked)
         
     def add_passport_label(self):
@@ -69,21 +68,16 @@ class Gui(Tk):
                                       font="Arial 12")
 
     def add_passport_checkbutton_yes(self):
-        PassportCheck = IntVar()
         self.passport_checkbutton_yes = Checkbutton()
         self.passport_checkbutton_yes.grid(row=4,column=1,
                                            sticky="E")
-        self.passport_checkbutton_yes.configure(text="Yes",
-                                                variable = PassportCheck,
-                                                onvalue = "Yes")
+        self.passport_checkbutton_yes.configure(text="Yes")
         self.passport_checkbutton_yes.bind("<ButtonRelease-1>",self.passport_checkbutton_yes_clicked)
 
     def add_passport_checkbutton_no(self):
-        PassportCheck = IntVar()
         self.passport_checkbutton_no = Checkbutton()
         self.passport_checkbutton_no.grid(row=4,column=2)
-        self.passport_checkbutton_no.configure(text="No",
-                                               variable = PassportCheck)
+        self.passport_checkbutton_no.configure(text="No")
         self.passport_checkbutton_no.bind("<ButtonRelease-1>",self.passport_checkbutton_no_clicked)
 
     def add_visa_label(self):
@@ -95,21 +89,16 @@ class Gui(Tk):
                                   font="Arial 12")
 
     def add_visa_checkbutton_yes(self):
-        VisaCheck = IntVar()
         self.visa_checkbutton_yes = Checkbutton()
         self.visa_checkbutton_yes.grid(row=6,column=1,
                                        sticky="E")
-        self.visa_checkbutton_yes.configure(text="Yes",
-                                            variable = VisaCheck,
-                                            onvalue = "Yes")
+        self.visa_checkbutton_yes.configure(text="Yes")
         self.visa_checkbutton_yes.bind("<ButtonRelease-1>",self.visa_checkbutton_yes_clicked)
 
     def add_visa_checkbutton_no(self):
-        self.visa_check_var = IntVar()
         self.visa_checkbutton_no = Checkbutton()
         self.visa_checkbutton_no.grid(row=6,column=2)
-        self.visa_checkbutton_no.configure(text="No",
-                                           variable = VisaCheck)
+        self.visa_checkbutton_no.configure(text="No")
         self.visa_checkbutton_no.bind("<ButtonRelease-1>",self.visa_checkbutton_no_clicked)
 
     def add_check_button(self):
@@ -123,24 +112,33 @@ class Gui(Tk):
 
     def photo_checkbutton_yes_clicked(self, event):
         self.photo_checkbutton_no.deselect()
+        self.photo_check_var = "valid"
 
     def photo_checkbutton_no_clicked(self, event):
         self.photo_checkbutton_yes.deselect()
+        self.photo_check_var = "invalid"
 
     def passport_checkbutton_yes_clicked(self, event):
         self.passport_checkbutton_no.deselect()
+        self.passport_check_var = "valid"
 
     def passport_checkbutton_no_clicked(self, event):
         self.passport_checkbutton_yes.deselect()
+        self.passport_check_var = "invalid"
 
     def visa_checkbutton_yes_clicked(self, event):
         self.visa_checkbutton_no.deselect()
+        self.visa_check_var = "valid"
 
     def visa_checkbutton_no_clicked(self, event):
         self.visa_checkbutton_yes.deselect()
+        self.visa_check_var = "invalid"
 
     def check_button_clicked(self,event):
-        if self.photo_check == 1  and self.passport_check == 1 and PassportCheck & VisaCheck == "Yes":
-            messagebox.showinfo("Passport Check", "Passport is valid")
+        if self.photo_check_var == "valid" and self.passport_check_var == "valid" and self.visa_check_var == "valid":
+            messagebox.showinfo("Passport Check", "Passport is valid.")
         else:
-            messagebox.showinfo("Passport Check", "Passport is not valid")
+            messagebox.showinfo("Passport Check", "Error: " + "\n" + "\n" + 
+                                "Photo: " + self.photo_check_var + "\n" +
+                                "Passport: " + self.passport_check_var + "\n" +
+                                "Visa: " + self.visa_check_var)
