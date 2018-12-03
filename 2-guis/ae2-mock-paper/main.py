@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import time
 
 # the class
 class AnimatedGui(Tk):
@@ -10,6 +11,9 @@ class AnimatedGui(Tk):
         self.envelope_image = PhotoImage(file="envelope.gif")
         self.envelope_tick_image = PhotoImage(file="envelope_tick.gif")
         self.envelope_cross_image = PhotoImage(file="envelope_cross.gif")
+        self.weekly_newsletter_image = PhotoImage(file="weekly_newsletter.gif")
+        self.monthly_newsletter_image = PhotoImage(file="monthly_newsletter.gif")
+        self.yearly_newsletter_image = PhotoImage(file="yearly_newsletter.gif")
         
         # set window attributes
         self.title("Newsletter")
@@ -18,6 +22,10 @@ class AnimatedGui(Tk):
 
         # set animation attributes
         #self.num_ticks = 0
+        self.newsletter_x_pos = 50
+        self.newsletter_y_pos = 50
+        self.newsletter_x_change = 10
+        self.newsletter_y_change = 10
         
         # add components
         #self.add_window_frame()
@@ -31,9 +39,33 @@ class AnimatedGui(Tk):
         self.add_type_label()
         self.add_periodic_optionmenu()
         self.add_subscribe_button()
+        self.add_animation_button()
+        self.add_animation_frame()
+        self.add_animation_label()
+
+        self.animation_state = 0
         
         # start the timer
-        #self.tick()
+        self.tick()
+
+    # the timer function
+    def tick(self):
+        self.newsletter_x_pos += self.newsletter_x_change
+        self.newsletter_y_pos += self.newsletter_y_change
+        self.animation_label.place(x=self.newsletter_x_pos,
+                                   y=self.newsletter_y_pos)
+        if self.newsletter_x_pos >= 175:
+            self.newsletter_x_change *= -1
+        if self.newsletter_y_pos >= 175:
+            self.newsletter_y_change *= -1
+        if self.newsletter_x_pos <= 5:
+            self.newsletter_x_change *= -1
+        if self.newsletter_y_pos <= 5:
+            self.newsletter_y_change *= -1
+
+        self.after(100,self.tick)
+            
+        
 
     def add_window_frame(self):
         self.window_frame = Frame()
@@ -98,6 +130,7 @@ class AnimatedGui(Tk):
         self.periodic_optionmenu.pack(side=LEFT)
         self.periodic_optionmenu.configure(width=35)
         self.periodic_optionmenu.bind("<KeyRelease>", self.subscribe_button_clicked)
+        self.periodic_optionmenu.bind("<KeyRelease>", self.animation_start)
         
 
     def add_subscribe_button(self):
@@ -107,19 +140,41 @@ class AnimatedGui(Tk):
                                         bg="#fee")
         self.subscribe_button.bind("<ButtonRelease-1>", self.subscribe_button_clicked)
 
+    def add_animation_button(self):
+        self.animation_button = Button()
+        self.animation_button.pack(fill=X)
+        self.animation_button.configure(text="Start Animation",
+                                        bg="#fee")
+        self.animation_button.bind("<ButtonRelease-1>", self.animation_button_clicked)
+        self.animation_button.bind("<ButtonRelease-1>", self.animation_start)
+
+    def add_animation_frame(self):
+        self.animation_frame = Frame()
+        self.animation_frame.pack(fill=X)
+        self.animation_frame.configure(bg="#fed",
+                                       height=200)
+
+    def add_animation_label(self):
+        self.animation_label = Label(self.animation_frame)
+        self.animation_label.place(x=self.newsletter_x_pos,
+                                   y=self.newsletter_y_pos)
+        self.animation_label.configure(image=self.weekly_newsletter_image)
+
+    # functions
+
     def subscribe_button_clicked(self, event):
-        periodic_choice = self.variable.get()
+        self.periodic_choice = self.variable.get()
         email_subscribe = self.email_entry.get()
         if email_subscribe == "":
             messagebox.showinfo("Newsletter", "Please enter your email!")
-        elif email_subscribe != "" and periodic_choice == "Weekly":
+        elif email_subscribe != "" and self.periodic_choice == "Weekly":
             messagebox.showinfo("Newsletter", "You have subscribed to the weekly newsletter! You will receive this every Monday.")
-        elif email_subscribe != "" and periodic_choice == "Monthly":
+        elif email_subscribe != "" and self.periodic_choice == "Monthly":
             messagebox.showinfo("Newsletter", "You have subscribed to the weekly newsletter! You will receive this on the first day of each month.")
-        elif email_subscribe != "" and periodic_choice == "Yearly":
+        elif email_subscribe != "" and self.periodic_choice == "Yearly":
             messagebox.showinfo("Newsletter", "You have subscribed to the weekly newsletter! You will receive this at the start of each year.")
         else:
-            messagebox.showinfo("Newsletter", "Error.")
+            messagebox.showinfo(":(", "Error.")
 
     def email_entry_edit(self, event):
         email_subscribe = self.email_entry.get()
@@ -127,6 +182,27 @@ class AnimatedGui(Tk):
             self.email_envelope_label.configure(image=self.envelope_cross_image)
         else:
             self.email_envelope_label.configure(image=self.envelope_tick_image)
+
+    def animation_button_clicked(self, event):
+        self.animation_state += 1
+        #print(self.animation_state)
+        if self.animation_state % 2 == 0:
+            self.animation_button.configure(text="Start Animation")
+        elif self.animation_state % 2 == 1:
+            self.animation_button.configure(text="Stop Animation")
+
+    def animation_start(self, event):
+        self.periodic_choice = self.variable.get()
+        if self.animation_state % 2 == 0:
+            if self.periodic_choice == "Weekly":
+                self.animation_label.configure(image=self.weekly_newsletter_image)
+            elif self.periodic_choice == "Monthly":
+                self.animation_label.configure(image=self.monthly_newsletter_image)
+            elif self.periodic_choice == "Yearly":
+                self.animation_label.configure(image=self.yearly_newsletter_image)
+            else:
+                print("Error.")
+
         
   
 # the object
