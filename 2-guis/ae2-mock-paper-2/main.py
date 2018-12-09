@@ -195,6 +195,7 @@ class AnimatedGui(Tk):
     # events
     def amount_entered(self,event):
         self.entry_value = int(self.amount_entry.get())
+        self.amount_entry.configure(width=47)
         if self.entry_value == "":
             self.amount_image.configure(image=self.cross_image)
         else:
